@@ -1,0 +1,50 @@
+version: '3.9'
+services:
+  # server:
+  #   build:
+  #     context: ./server
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8080:8080
+  #   volumes:
+  #     - ./server:/app
+    # command: ["python", "manage.py", "runserver", "0.0.0.0:8080"]
+    # restart: on-failure
+      # - ./wait-for-it.sh
+      # - db:27017
+      # - --timeout=10
+      # - --
+      # - bash
+      # - -c
+      # - python manage.py runserver 0.0.0.0:8080
+  #   environment:
+  #     PROJECT_NAME: 'Covid Tracker API Server'
+  #     PORT: 8080
+  #     IS_PRODUCTION: 'false'
+  #     DB_CONN_STR: 'mongodb://root:root@db:27017?readPreference=primary&ssl=false'
+  #     DB_NAME: 'covidtracker'
+  #   depends_on:
+  #     - db
+  # client:
+  #   build:
+  #     context: ./client
+  #   ports:
+  #     - '3000:3000'
+  #   environment:
+  #     CHOKIDAR_USEPOLLING: 'true'
+  #     REACT_APP_CURRENT_VERSION: '1'
+  #     REACT_APP_API_URL: 'http://localhost:8080/api'
+  #   volumes:
+  #     - ./client/src:/app/src
+  #   stdin_open: true
+  #   depends_on:
+  #     - server
+  db:
+    image: mongo:4.4.4-bionic
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'root'
+      MONGO_INITDB_ROOT_PASSWORD: 'root'
+      MONGO_INITDB_DATABASE: 'covidtracker'
+    restart: always
+    ports:
+        - '27017:27017'
