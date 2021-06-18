@@ -12,10 +12,10 @@ const Widget = (props) => {
                 <Card.Text>
                     <Row>
                         <Col xs={12} md={6}>
-                            <Card.Title>{widgetTitle}</Card.Title>
+                            <h6>{widgetTitle}</h6>
                         </Col>
                         <Col xs={12} md={6}>
-                            <h5>{widgetValue}</h5>
+                            <h6>{widgetValue}</h6>
                         </Col>
                     </Row>
                 </Card.Text>

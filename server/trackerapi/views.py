@@ -34,7 +34,6 @@ def getCountryStats(request):
     if search is not None:
         searchStr = searchStr + '&search='+str(search)
     result = proxyCountryStats(request, searchStr)
-    print('result ' + json.dumps(result))
     response = HttpResponse(json.dumps(result))
     response['Content-Type'] = 'application/json; charset=utf-8'
     response['Access-Control-Allow-Origin'] = '*'

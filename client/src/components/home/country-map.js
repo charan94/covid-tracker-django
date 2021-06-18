@@ -41,25 +41,35 @@ const CountryMap = (props) => {
                 })
                 .on("mousemove", function (event, d) {
                     tooltip.classed("d-none", false)
-                        .style("top", (event.pageY) + "px")
+                        .style("top", (event.pageY - 350) + "px")
                         .style("left", (event.pageX + 10) + "px")
-                        .html(`<div class="d-flex">
+                        .html(`<div class="d-block">
                         <div class="row">
                         <div class="col-12">
                             <h6>Country Name: <b>${d?.properties?.name}</b></h6>
                         </div>
+                        </div>
+                        <div class="row">
                         <div class="col-12">
                             <h6>Total Cases: <b>${countryData ? countryData.find(data => data.country === d?.properties?.name)?.total_cases || 0 : 0}</b></h6>
                         </div>
+                        </div>
+                        <div class="row">
                         <div class="col-12">
                             <h6>New Cases: <b>${countryData ? countryData.find(data => data.country === d?.properties?.name)?.new_cases || 0 : 0}</b></h6>
                         </div>
+                        </div>
+                        <div class="row">
                         <div class="col-12">
                             <h6>Total Deaths: <b>${countryData ? countryData.find(data => data.country === d?.properties?.name)?.total_deaths || 0 : 0}</b></h6>
                         </div>
+                        </div>
+                        <div class="row">
                         <div class="col-12">
                             <h6>Total Recovered: <b>${countryData ? countryData.find(data => data.country === d?.properties?.name)?.total_recovered || 0 : 0}</b></h6>
                         </div>
+                        </div>
+                        <div class="row">
                         <div class="col-12">
                             <h6>Active Cases: <b>${countryData ? countryData.find(data => data.country === d?.properties?.name)?.active_cases || 0 : 0}</b></h6>
                         </div>
@@ -78,10 +88,10 @@ const CountryMap = (props) => {
             return (<Loader loading={loading} />);
         }
         return (
-            <>
+            <div className="position-relative">
                 <svg width="960" height="600" ref={countrySvg}></svg>
                 <div className="country-tooltip"></div>
-            </>
+            </div>
         )
     }
 
