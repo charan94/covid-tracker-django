@@ -9,7 +9,6 @@ services:
     volumes:
       - ./server:/app
     command: ["python", "manage.py", "runserver", "0.0.0.0:8080"]
-    # command: ["python manage.py migrate && python manage.py runserver 0:8080"]
     restart: on-failure
     environment:
       PROJECT_NAME: 'Covid Tracker API Server'
