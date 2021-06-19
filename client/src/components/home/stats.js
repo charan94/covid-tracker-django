@@ -13,7 +13,7 @@ const CoronaStats = (props) => {
         }
         return (
             <Row>
-                <Col xs={6} md={3}>
+                <Col xs={12} md={3}>
                     <Widget
                         widgetClass=""
                         widgetHeader=""
@@ -21,7 +21,7 @@ const CoronaStats = (props) => {
                         widgetValue={generalStats?.total_cases || 0}
                     />
                 </Col>
-                <Col xs={6} md={3}>
+                <Col xs={12} md={3}>
                     <Widget
                         widgetClass=""
                         widgetHeader=""
@@ -29,7 +29,7 @@ const CoronaStats = (props) => {
                         widgetValue={generalStats?.recovery_cases || 0}
                     />
                 </Col>
-                <Col xs={6} md={3}>
+                <Col xs={12} md={3}>
                     <Widget
                         widgetClass=""
                         widgetHeader=""

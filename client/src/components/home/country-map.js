@@ -88,8 +88,8 @@ const CountryMap = (props) => {
             return (<Loader loading={loading} />);
         }
         return (
-            <div className="position-relative">
-                <svg width="960" height="600" ref={countrySvg}></svg>
+            <div className="position-relative world-map">
+                <svg width="960" height="500" ref={countrySvg}></svg>
                 <div className="country-tooltip"></div>
             </div>
         )

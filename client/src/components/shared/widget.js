@@ -9,16 +9,14 @@ const Widget = (props) => {
         <Card className={`${widgetClass ? widgetClass : ''}`}>
             <Card.Header>{widgetHeader}</Card.Header>
             <Card.Body>
-                <Card.Text>
-                    <Row>
-                        <Col xs={12} md={6}>
-                            <h6>{widgetTitle}</h6>
-                        </Col>
-                        <Col xs={12} md={6}>
-                            <h6>{widgetValue}</h6>
-                        </Col>
-                    </Row>
-                </Card.Text>
+                <Row>
+                    <Col xs={12} md={6}>
+                        <h6>{widgetTitle}</h6>
+                    </Col>
+                    <Col xs={12} md={6}>
+                        <h6>{widgetValue}</h6>
+                    </Col>
+                </Row>
             </Card.Body>
         </Card>
     )

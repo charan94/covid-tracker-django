@@ -21,3 +21,9 @@
     opacity: 0.9; 
     position: absolute;
 }
+
+@media (max-width: 576px) { 
+    .world-map {
+        overflow: auto !important
+    }
+ }
