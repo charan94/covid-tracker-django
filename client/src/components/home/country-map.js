@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../../assets/scss/country.scss'
 import * as d3 from 'd3';
-import { feature } from 'topojson';
 import Loader from '../shared/loader';
 
 const CountryMap = (props) => {
@@ -12,7 +11,7 @@ const CountryMap = (props) => {
     useEffect(() => {
         if (countries === null) {
             d3.json('https://gist.githubusercontent.com/GordyD/49654901b07cb764c34f/raw/27eff6687f677c984a11f25977adaa4b9332a2a9/countries-and-states.json').then(data => {
-                setCountries(feature(data, data.objects.countries));
+                setCountries(window.topojson.feature(data, data.objects.countries));
             })
         }
     }, [countries, setCountries])
