@@ -1,39 +1,43 @@
 import requests
 import os
 from django.http import HttpResponse
-from django.core import serializers
+from rest_framework import viewsets
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 from . import models
 import json
 
 
+class GeneralStatsViewSet(viewsets.ModelViewSet):
+    queryset = models.GeneralStatistics.objects.all()
+    serializer_class = models.GeneralStatisticsSerializer
+    permission_classes = []
+
+
+@api_view(['GET'])
 def getGeneralStatistics(request):
     generalStatistics = models.GeneralStatistics.objects.all()
     response = ''
     if generalStatistics.count() == 0:
         result = proxyGeneralStatistics(request)
-        print(result);
+        print(result)
         if result is not None:
             generalStatistics = models.GeneralStatistics.objects.create(total_cases=result['cases'], recovery_cases=result['recovered'], death_cases=result['deaths'],
                                                                         last_update=result['updated'], currently_infected=result['active'])
             generalStatistics.save()
             generalStatistics = models.GeneralStatistics.objects.all()
-    serializedOutput = serializers.serialize(
-        'json', [generalStatistics.first()])
-    response = HttpResponse(serializedOutput)
-    response['Content-Type'] = 'application/json; charset=utf-8'
-    response['Access-Control-Allow-Origin'] = '*'
-    response['Access-Control-Allow-Headers'] = 'GET,PUT,POST,OPTIONS'
-    return response
+    print(generalStatistics)
+    serializer = models.GeneralStatisticsSerializer(
+        generalStatistics, many=True)
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+@api_view(['GET'])
 def getCountryStats(request):
-    response = ''
     result = proxyCountryStats()
-    response = HttpResponse(json.dumps(result))
-    response['Content-Type'] = 'application/json; charset=utf-8'
-    response['Access-Control-Allow-Origin'] = '*'
-    response['Access-Control-Allow-Headers'] = 'GET,PUT,POST,OPTIONS'
-    return response
+    return Response(result, status=status.HTTP_200_OK)
 
 
 def proxyGeneralStatistics(request):

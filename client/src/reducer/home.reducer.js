@@ -39,7 +39,7 @@ export const homeSlice = createSlice({
         state.generalStats = null;
         const result = action?.payload;
         if (result && result.length) {
-          state.generalStats = result[0]?.fields || null;
+          state.generalStats = result[0] || null;
         }
       })
       .addCase(loadGeneralStatsAction.rejected, (state, action) => {

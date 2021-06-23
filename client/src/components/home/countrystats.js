@@ -33,11 +33,11 @@ const CountryStats = (props) => {
 
             const keys = ['Total Cases', 'Total Deaths', 'New Deaths', 'Total Recovered', 'Active Cases'];
             const data = countryList.map((d) => {
-                d['Total Cases'] = parseFloat(d['cases'].replace(/\,/g, '')) || 0;
-                d['Total Deaths'] = parseFloat(d['deaths'].replace(/\,/g, '')) || 0;
-                d['New Deaths'] = parseFloat(d['todayDeaths'].replace(/\,/g, '')) || 0;
-                d['Total Recovered'] = parseFloat(d['recovered'].replace(/\,/g, '')) || 0;
-                d['Active Cases'] = parseFloat(d['active'].replace(/\,/g, '')) || 0;
+                d['Total Cases'] = parseFloat(d['cases']) || 0;
+                d['Total Deaths'] = parseFloat(d['deaths']) || 0;
+                d['New Deaths'] = parseFloat(d['todayDeaths']) || 0;
+                d['Total Recovered'] = parseFloat(d['recovered']) || 0;
+                d['Active Cases'] = parseFloat(d['active']) || 0;
                 return d;
             })
 
