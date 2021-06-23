@@ -8,8 +8,6 @@ class GeneralStatistics(models.Model):
     death_cases = models.TextField(verbose_name= "death_cases")
     last_update = models.TextField(verbose_name= "last_update")
     currently_infected = models.TextField(verbose_name= "currently_infected")
-    cases_with_outcome = models.TextField(verbose_name= "cases_with_outcome")
-    general_death_rate = models.TextField(verbose_name= "general_death_rate")
     last_fetched_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

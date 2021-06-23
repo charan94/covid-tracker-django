@@ -6,6 +6,6 @@ export const getGeneralStatsAPI = () => {
 }
 
 export const getCountryStatsAPI = () => {
-    const url = `${API_URL}/country-stats?limit=300&page=1`;
+    const url = `${API_URL}/country-stats`;
     return apiCall(url);
 }

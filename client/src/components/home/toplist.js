@@ -40,25 +40,25 @@ const TopList = (props) => {
         },
         {
             name: "Total Cases",
-            selector: "total_cases",
+            selector: "cases",
             sortable: false,
             center: true
         },
         {
             name: "Total Deaths",
-            selector: "total_deaths",
+            selector: "deaths",
             sortable: false,
             center: true
         },
         {
             name: "Total Recovered",
-            selector: "total_recovered",
+            selector: "recovered",
             sortable: false,
             center: true
         },
         {
             name: "Active Cases",
-            selector: "active_cases",
+            selector: "active",
             sortable: false,
             center: true
         }

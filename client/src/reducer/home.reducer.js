@@ -56,8 +56,8 @@ export const homeSlice = createSlice({
         state.countryDataLoading = false;
         state.countryListData = null;
         const result = action?.payload;
-        if (result && result.data) {
-          state.countryListData = result?.data?.rows || null;
+        if (result) {
+          state.countryListData = result || null;
         }
       })
       .addCase(loadCountryStatsAction.rejected, (state, action) => {

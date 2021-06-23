@@ -11,9 +11,10 @@ def getGeneralStatistics(request):
     response = ''
     if generalStatistics.count() == 0:
         result = proxyGeneralStatistics(request)
+        print(result);
         if result is not None:
-            generalStatistics = models.GeneralStatistics.objects.create(total_cases=result['data']['total_cases'], recovery_cases=result['data']['recovery_cases'], death_cases=result['data']['death_cases'],
-                                                                        last_update=result['data']['last_update'], currently_infected=result['data']['currently_infected'], cases_with_outcome=result['data']['cases_with_outcome'], general_death_rate=result['data']['general_death_rate'])
+            generalStatistics = models.GeneralStatistics.objects.create(total_cases=result['cases'], recovery_cases=result['recovered'], death_cases=result['deaths'],
+                                                                        last_update=result['updated'], currently_infected=result['active'])
             generalStatistics.save()
             generalStatistics = models.GeneralStatistics.objects.all()
     serializedOutput = serializers.serialize(
@@ -27,13 +28,7 @@ def getGeneralStatistics(request):
 
 def getCountryStats(request):
     response = ''
-    limit = request.GET.get('limit', 8)
-    page = request.GET.get('page', 1)
-    search = request.GET.get('search')
-    searchStr = '?limit='+str(limit)+'&page='+str(page)
-    if search is not None:
-        searchStr = searchStr + '&search='+str(search)
-    result = proxyCountryStats(request, searchStr)
+    result = proxyCountryStats()
     response = HttpResponse(json.dumps(result))
     response['Content-Type'] = 'application/json; charset=utf-8'
     response['Access-Control-Allow-Origin'] = '*'
@@ -44,15 +39,15 @@ def getCountryStats(request):
 def proxyGeneralStatistics(request):
     url = os.environ['CORONA_STATS_API']
     result = requests.get(
-        url + '/general-stats', params=request.GET)
+        url + '/all', params=request.GET)
     if result.status_code == 200:
         return result.json()
     else:
         return None
 
 
-def proxyCountryStats(request, searchStr):
-    url = os.environ['CORONA_STATS_API'] + '/countries-search' + searchStr
+def proxyCountryStats():
+    url = os.environ['CORONA_STATS_API'] + '/countries'
     result = requests.get(url)
     if result.status_code == 200:
         return result.json()

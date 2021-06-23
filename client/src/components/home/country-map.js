@@ -50,27 +50,27 @@ const CountryMap = (props) => {
                         </div>
                         <div class="row">
                         <div class="col-12">
-                            <h6>Total Cases: <b>${countryData ? countryData.find(data => data.country === d?.properties?.name)?.total_cases || 0 : 0}</b></h6>
+                            <h6>Total Cases: <b>${countryData ? countryData.find(data => data.country.indexOf(d?.properties?.name) !== -1)?.cases || 0 : 0}</b></h6>
                         </div>
                         </div>
                         <div class="row">
                         <div class="col-12">
-                            <h6>New Cases: <b>${countryData ? countryData.find(data => data.country === d?.properties?.name)?.new_cases || 0 : 0}</b></h6>
+                            <h6>New Cases: <b>${countryData ? countryData.find(data => data.country.indexOf(d?.properties?.name) !== -1)?.todayCases || 0 : 0}</b></h6>
                         </div>
                         </div>
                         <div class="row">
                         <div class="col-12">
-                            <h6>Total Deaths: <b>${countryData ? countryData.find(data => data.country === d?.properties?.name)?.total_deaths || 0 : 0}</b></h6>
+                            <h6>Total Deaths: <b>${countryData ? countryData.find(data => data.country.indexOf(d?.properties?.name) !== -1)?.deaths || 0 : 0}</b></h6>
                         </div>
                         </div>
                         <div class="row">
                         <div class="col-12">
-                            <h6>Total Recovered: <b>${countryData ? countryData.find(data => data.country === d?.properties?.name)?.total_recovered || 0 : 0}</b></h6>
+                            <h6>Total Recovered: <b>${countryData ? countryData.find(data => data.country.indexOf(d?.properties?.name) !== -1)?.recovered || 0 : 0}</b></h6>
                         </div>
                         </div>
                         <div class="row">
                         <div class="col-12">
-                            <h6>Active Cases: <b>${countryData ? countryData.find(data => data.country === d?.properties?.name)?.active_cases || 0 : 0}</b></h6>
+                            <h6>Active Cases: <b>${countryData ? countryData.find(data => data.country.indexOf(d?.properties?.name) !== -1)?.active || 0 : 0}</b></h6>
                         </div>
                         </div>
                         </div>`);
